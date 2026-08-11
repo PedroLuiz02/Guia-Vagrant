@@ -168,4 +168,4 @@ Um dos principais comandos é:
 vagrant up
 ```
 
-Ele será apresentado em detalhes posteriormente neste guia.
+## 3. Pré-requisitos
