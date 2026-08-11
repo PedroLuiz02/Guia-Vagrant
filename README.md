@@ -8,7 +8,7 @@ Este repositório apresenta um guia prático para instalação, configuração e
 
 1. [O que é Vagrant?](#1-o-que-é-vagrant)
 2. [Como o Vagrant funciona?](#2-como-o-vagrant-funciona)
-3. Pré-requisitos
+3. [Pré-requisitos](#3-pré-requisitos)
 4. Instalação
 5. Verificando a instalação
 6. Criando o primeiro projeto
@@ -168,4 +168,67 @@ Um dos principais comandos é:
 vagrant up
 ```
 
+---
+
 ## 3. Pré-requisitos
+
+Antes de começar a utilizar o Vagrant, é necessário preparar o computador com algumas ferramentas e configurações básicas.
+
+Para acompanhar os exemplos deste guia, serão utilizados:
+
+- **Vagrant** — ferramenta responsável por criar e gerenciar os ambientes;
+- **VirtualBox** — utilizado como provider para executar as máquinas virtuais;
+- **Windows 10 ou Windows 11**;
+- **PowerShell, Prompt de Comando ou outro terminal** para executar os comandos;
+- **Conexão com a internet**, principalmente durante a primeira criação da máquina virtual, pois será necessário baixar a box utilizada pelo Vagrant;
+- **Virtualização de hardware habilitada** no computador.
+
+### Vagrant e VirtualBox são a mesma coisa?
+
+Não. Apesar de trabalharem juntos neste projeto, eles possuem funções diferentes.
+
+```text
+Vagrant
+   ↓
+Gerencia e automatiza o ambiente
+   ↓
+VirtualBox
+   ↓
+Executa a máquina virtual
+```
+
+O **VirtualBox** é responsável pela virtualização propriamente dita, enquanto o **Vagrant** fornece uma forma mais simples e automatizada de criar, configurar e controlar essas máquinas.
+
+Por isso, para os exemplos deste guia, **os dois programas precisam estar instalados**.
+
+### Como verificar se já estão instalados?
+
+No PowerShell ou em outro terminal, execute:
+
+```powershell
+vagrant --version
+```
+
+Para verificar o VirtualBox:
+
+```powershell
+VBoxManage --version
+```
+
+Se os programas estiverem instalados e disponíveis no sistema, os comandos retornarão suas respectivas versões.
+
+Caso apareça uma mensagem semelhante a:
+
+```text
+O termo 'vagrant' não é reconhecido como nome de cmdlet...
+```
+
+ou:
+
+```text
+O termo 'VBoxManage' não é reconhecido...
+```
+
+o programa pode ainda não estar instalado ou seu executável pode não estar disponível no `PATH` do sistema.
+
+A instalação das ferramentas será apresentada no próximo tópico.
