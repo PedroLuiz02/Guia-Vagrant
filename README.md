@@ -9,9 +9,9 @@ Este repositório apresenta um guia prático para instalação, configuração e
 1. [O que é Vagrant?](#1-o-que-é-vagrant)
 2. [Como o Vagrant funciona?](#2-como-o-vagrant-funciona)
 3. [Pré-requisitos](#3-pré-requisitos)
-4. Instalação
-5. Verificando a instalação
-6. Criando o primeiro projeto
+4. [Instalação](#4-instalação)
+5. [Verificando a instalação](#5-verificando-a-instalação)
+6. [Criando o primeiro projeto](#6-criando-o-primeiro-projeto)
 7. Entendendo o Vagrantfile
 8. Criando a máquina virtual
 9. [Acessando a máquina virtual](#9-acessando-a-máquina-virtual)
@@ -201,7 +201,17 @@ O **VirtualBox** é responsável pela virtualização propriamente dita, enquant
 
 Por isso, para os exemplos deste guia, **os dois programas precisam estar instalados**.
 
-### Como verificar se já estão instalados?
+o programa pode ainda não estar instalado ou seu executável pode não estar disponível no `PATH` do sistema.
+
+A instalação das ferramentas será apresentada no próximo tópico.
+
+## 4. Instalação
+
+Para começar a usar o Vagrant, baixe o instalador ou pacote apropriado para sua plataforma no site [Hashicorp](http://developer.hashicorp.com/vagrant/install). Instale o pacote seguindo os procedimentos padrão para o seu sistema operacional.
+
+O instalador adiciona automaticamente o diretório Vagrant ao seu PATH do sistema para que ele esteja disponível nos terminais. Se não for encontrado, faça logout e login novamente no sistema; esse é um problema comum no Windows.
+
+## 5. Verificando a instalação
 
 No PowerShell ou em outro terminal, execute:
 
@@ -229,8 +239,92 @@ ou:
 O termo 'VBoxManage' não é reconhecido...
 ```
 
-o programa pode ainda não estar instalado ou seu executável pode não estar disponível no `PATH` do sistema.
+## 6. Criando o primeiro projeto
 
+Crie uma pasta para o projeto e acesse esse diretório pelo terminal:
+
+```bash
+mkdir meu-primeiro-vagrant
+cd meu-primeiro-vagrant
+```
+
+Inicialize um novo projeto Vagrant:
+
+```bash
+vagrant init
+```
+
+Esse comando cria um arquivo chamado Vagrantfile no diretório atual. O arquivo será utilizado para definir as configurações da máquina virtual.
+
+No começo o projeto terá uma estrutura semelhante a:
+
+```bash
+meu-primeiro-vagrant/
+└── Vagrantfile
+```
+
+Agora, o Vagrantfile pode ser configurado para utilizar uma box como sistema base da máquina virtual.
+
+```ruby
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/jammy64"
+end
+```
+
+Nesse exemplo, a box ubuntu/jammy64 vai ser utilizada como base para a máquina virtual.
+
+Depois de configurar o Vagrantfile, a máquina pode ser criada e iniciada utilizando o comando:
+
+```bash
+vagrant up
+```
+
+O Vagrant verificará se a box necessária está disponível localmente, e caso não esteja, ela será baixada e utilizada para criar a máquina através do provider configurado (Conceito de Idempotência).
+
+## 7. Entendendo o Vagrantfile
+
+O Vagrantfile deve descrever o tipo de máquina necessária para um projeto e como configurar e provisionar essas máquinas. O Vagrant foi projetado para ser executado com um Vagrantfile por projeto, e o Vagrantfile deve ser incluído no controle de versão, permitindo que outros desenvolvedores envolvidos no projeto baixem o código, executem o comando vagrant up e continuem trabalhando. Os Vagrantfiles são portáteis em todas as plataformas suportadas pelo Vagrant. A sintaxe dos Vagrantfiles é Ruby , mas o conhecimento da linguagem de programação Ruby não é necessário para fazer modificações no Vagrantfile, já que se trata principalmente de atribuição de variáveis ​​simples.
+
+O arquivo utiliza a sintaxe da linguagem Ruby, mas não é necessário conhecimento avançado da linguagem para realizar as configurações básicas utilizadas pelo Vagrant.
+
+Um Vagrantfile básico possui uma estrutura semelhante a:
+
+```ruby
+Vagrant.configure("2") do |config|
+config.vm.box = "ubuntu/jammy64"
+end
+```
+
+
+A instrução Vagrant.configure("2") inicia o bloco de configuração do Vagrant. O objeto config é utilizado para definir as configurações da máquina virtual.
+
+Nesse exemplo, config.vm.box define a box que será utilizada como base para criar a máquina virtual.
+
+As configurações definidas no Vagrantfile são lidas pelo Vagrant quando comandos como vagrant up são executados. A partir dessas configurações, o Vagrant utiliza o provider definido para criar e configurar a máquina virtual.
+
+O Vagrantfile também pode conter diferentes configurações para o ambiente, permitindo definir características da máquina, rede, armazenamento e processos de provisionamento. Essas configurações serão apresentadas nos tópicos específicos deste guia.
+
+### 7.1 Estrutura básica
+
+A estrutura básica de um Vagrantfile pode ser entendida da seguinte forma:
+
+```bash
+Vagrantfile
+↓
+Vagrant.configure()
+↓
+Bloco de configuração
+↓
+Configurações da máquina
+↓
+Vagrant utiliza essas configurações
+↓
+Provider cria e configura a máquina virtual
+```
+
+## 8. Criando a máquina virtual
+
+<<<<<<< HEAD
 A instalação das ferramentas será apresentada no próximo tópico.
 
 ## 9. Acessando a máquina virtual
@@ -375,3 +469,5 @@ o Vagrant poderá solicitar que o usuário escolha qual interface de rede dever�
 Está configuração de rede pública é útil quando precisamos que a máquina virtual seja acessível por outros dispositivos conectados à mesma rede. 
 
 Por exemplo, computadores conectados ao mesmo roteador podem conseguir se comunicar com a máquina virtual, dependendo das configurações de rede e firewall.
+=======
+>>>>>>> upstream/main
